@@ -49,12 +49,17 @@
             <small></small>
         </div>
         
-        <p id="repo">Repo count: </p>
+        <div>
+            <p>rep count</p>
+            <p id="repo">Repo count: </p>
+        </div>
+        
         <p id="fers">Followers: </p>
         <p id="fing">Following: </p>
     </div>
 
     <script>
+
 
         async function getData() {
             const response = await fetch('https://api.github.com/users/Atoti2')
@@ -63,26 +68,13 @@
             document.querySelector('h1').innerText = data['login']
             document.querySelector('img').src = data['avatar_url']
             document.querySelector('small').innerText = data['id']
-            document.querySelector('#repo').innerText += data['public_repos']
-            document.querySelector('#fers').innerText += data['followers']
-            document.querySelector('#fing').innerText += data['following']
+            document.querySelector('#repo').innerText = data['public_repos']
+            document.querySelector('#fers').innerText = data['followers']
+            document.querySelector('#fing').innerText = data['following']
            
         }
         getData()
-
-
-    // console.log(1)
-    // setTimeout(()=>console.log(2),1000)
-    // console.log(3)
-
-    // //nem változó hanem egy nyíl függvény
-    // async function getData(){
-    //     const response=await fetch('https://api.github.com/users/Atoti2')
-    //     const data=await response.json()
-    //     console.log(data)
-    // }
-    // getData()
-    // //jelenjen meg a felhasználónév+avatar
+        setInterval(getData, 5000)
 
 
 
